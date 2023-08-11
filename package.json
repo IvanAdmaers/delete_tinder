@@ -1,0 +1,16 @@
+{
+  "name": "delete_tinder",
+  "version": "1.0.0",
+  "description": "Delete tinder",
+  "source": "src/index.html",
+  "scripts": {
+    "dev": "parcel",
+    "build": "parcel build"
+  },
+  "keywords": [],
+  "author": "Ivan Admaers (https://ivanadmaers.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel": "^2.9.3"
+  }
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delete Tinder</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="./js/fireworks.js" defer></script>
+  <script src="./js/script.js" defer></script>
+</head>
+<body>
+  <div class="wrapper">
+    <div id="dialog0" class="dialog">
+      <p>Chose a number from 1 to 3</p>
+      <button type="button" data-save="ridesValue-1" data-next="dialog1">1</button>
+      <button type="button" data-save="ridesValue-2" data-next="dialog1">2</button>
+      <button type="button" data-save="ridesValue-3" data-next="dialog1">3</button>
+    </div>
+    <div id="dialog1" class="dialog">
+      <p>
+        <strong>Congrats!</strong><br />
+        As a girl who is making the other girls look bad, you've just gotten <span id="ridesValueElement"></span> trips to the craziest Coney Island's Luna Park attractions with me! 🤪
+      </p>
+      <button type="button" data-next="dialog3">I'm down 😂😂😂</button>
+      <button type="button" data-next="dialog2">Sorry, you're too sexy for me</button>
+    </div>
+    <div id="dialog2" class="dialog">
+      <p>Got you. Have a good one, anyway!</p>
+      <button type="button" data-next="dialog3">I changed my mind</button>
+    </div>
+    <div id="dialog3" class="dialog">
+      <div>
+        <p>Your name:</p>
+        <input type="text" id="input-name" autocomplete="off" /><br />
+      </div>
+      <div>
+        <p>Your number:</p>
+        <input type="text" id="input-number" autocomplete="off" />
+      </div>
+      <p class="top-offset-10px">Leave your contacts, and I'll send you a meme. Then we can discuss the rest</p>
+      <button type="button" data-next="dialog4">Go!</button>
+      <button type="button" data-next="dialog1">Back</button>
+    </div>
+    <div id="dialog4" class="dialog">
+      <p>Check, if everything is correct</p>
+      <div>
+        <p>
+          Your name:<br />
+          <span class="nameValueElement"></span><br />
+        </p>
+      </div>
+      <div>
+        <p>Your number:<br />
+        <span class="top-offset-10px numberValueElement"></span>
+        </p>
+      </div>
+      <button type="button" data-next="dialog5">That's correct</button>
+      <button type="button" data-next="dialog3">Fix something</button>
+    </div>
+    <div id="dialog5" class="dialog">
+      <p>
+        Nice to meet you,<br /><span class="nameValueElement"></span>!<br />
+        I'll text you later on<br /><span class="numberValueElement"></span>
+      </p>
+    </div>
+    <div class="fireworks-container"></div>
+  </div>
+</body>
+</html>
