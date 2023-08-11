@@ -94,6 +94,12 @@ html {
   pointer-events: none;
 }
 
+.pre-element {
+  font-family: monospace;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
 @keyframes animateGradient {
   0% {
     background-position: 0 50%;

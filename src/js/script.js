@@ -96,6 +96,8 @@ const fireworks = new Fireworks(container, { /* options */ })
 
 // the end | Safe results to local storage + fireworks
 
+const statsLocalStorageKey = '__delete_tinder_data';
+
 document
   .querySelector('button[data-next="dialog5"]')
   .addEventListener('click', () => {
@@ -105,19 +107,88 @@ document
       fireworks.stop();
     }, 15_000);
 
-    const key = '__delete_tinder_data';
-
-    const previousDataJSON = localStorage.getItem(key);
+    const previousDataJSON = localStorage.getItem(statsLocalStorageKey);
     const previousData =
       previousDataJSON === null ? null : JSON.parse(previousDataJSON);
 
     data.date = new Date();
 
     if (previousData === null) {
-      localStorage.setItem(key, JSON.stringify([data]));
+      localStorage.setItem(statsLocalStorageKey, JSON.stringify([data]));
 
       return;
     }
 
-    localStorage.setItem(key, JSON.stringify([data, ...previousData]));
+    localStorage.setItem(statsLocalStorageKey, JSON.stringify([data, ...previousData]));
   });
+
+// Show data trigger
+
+let tapCount = 0;
+let clickCount = 0;
+let timeout;
+
+const deleteStats = () => {
+  localStorage.removeItem(statsLocalStorageKey)
+  alert('Done');
+
+  window.location.reload();
+};
+
+const closeStats = () => {
+  window.location.reload();
+};
+
+const showStats = () => {
+  document.body.querySelector('.wrapper').innerHTML = `
+  <div class="dialog" style="overflow-y: scroll;">
+    <button type="button" onclick="deleteStats()">Delete all</button>
+    <button type="button" onclick="closeStats()">Close</button>
+    <pre class="pre-element">
+      <code>
+        ${localStorage.getItem(statsLocalStorageKey)}
+      </code>
+    </pre>
+  </div>
+  `
+};
+
+const tapOrClickCount = 15;
+
+const resetCounts = () => {
+  tapCount = 0;
+  clickCount = 0;
+
+  clearTimeout(timeout);
+};
+
+const handleTap = () => {
+  tapCount += 1;
+
+  clearTimeout(timeout);
+
+  if (tapCount === tapOrClickCount) {
+    showStats();
+    resetCounts();
+    return;
+  }
+
+  timeout = setTimeout(resetCounts, 1000);
+};
+
+const handleClick = () => {
+  clickCount += 1;
+
+  clearTimeout(timeout);
+
+  if (clickCount === tapOrClickCount) {
+    showStats();
+    resetCounts();
+    return;
+  }
+
+  timeout = setTimeout(resetCounts, 1000);
+};
+
+document.addEventListener('click', handleClick);
+document.addEventListener('touchstart', handleTap);
